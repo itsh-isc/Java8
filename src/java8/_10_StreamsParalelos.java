@@ -15,7 +15,10 @@ public class _10_StreamsParalelos {
         
         // Puede mejorar el rendimiento en algunas aplicaciones
         // Pero en Java EE Container no es aconsejable
-        // Se recomienda en aplicaciones de escritorio o de tipo batch
+        // (por ejemplo, servidores de aplicaciones que interactuen con JPA, EJB, etc.)
+        // pues puede saturar las peticiones de un ambiente asincrono
+        
+        // Se recomienda en aplicaciones de escritorio o de tipo batch (consola)
     }
     
     private void llenar(){
@@ -32,6 +35,10 @@ public class _10_StreamsParalelos {
     
     private void probarStreamParalelo(){
         System.out.println("--------PARALELO----------");
+        
+        // procesamiento asincrono, empleando hilos
+        // cada ejecucion resulta aleatoria
+        // por lo que su comportamiento varia
         numeros.parallelStream().forEach(System.out::println);
     }
 }

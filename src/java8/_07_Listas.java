@@ -6,7 +6,7 @@
 package java8;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -19,9 +19,10 @@ public class _07_Listas {
     public static void main(String[] args) {
         _07_Listas test = new _07_Listas();
         test.llenarLista();
-        //test.usarSort();
-        //test.usarRemoveIf();
+        
         test.usarForEach();
+        test.usarRemoveIf();
+        //test.usarSort();
     }
     
     private void llenarLista(){
@@ -34,40 +35,39 @@ public class _07_Listas {
     
     private void usarForEach(){
         // 1. Manera tradicional
-        /*
         for(String elemento: lista){
             System.out.println(elemento);
-        }*/
+        }
         
         // 2. usando Lambdas
         //lista.forEach(elemento -> System.out.println(elemento));
         
         // 3. Usando Metodo referenciado
-        lista.forEach(System.out::println);
+        //lista.forEach(System.out::println);
     }
     
     private void usarRemoveIf(){
         // 1. Manera tradicional
-        /*
         // Recordemos que no se podria hacer de esta manera,
         // pues mandaria una exepcion de concurrencia
+        // (ConcurrentModificationException)
         for(String elemento: lista){
-            if(elemento.equalsIgnoreCase("Hola"){
+            if(elemento.equalsIgnoreCase("Hola")){
                 lista.remove(elemento);
             }
         }
         
-        // necesita un iterador
-        Iterator<String> it = lista.iterator();
+        // en lugar del codigo anterior, se necesita un iterador
+        // para no generar exepciones
+        /*Iterator<String> it = lista.iterator();
         while(it.hasNext()){
             if(it.next().equalsIgnoreCase("Hola")){
                 it.remove();
             }
-        }
-        */
+        }*/
         
         // 2. usando Lambdas
-        lista.removeIf(elemento -> elemento.equalsIgnoreCase("Hola"));
+        //lista.removeIf(elemento -> elemento.equalsIgnoreCase("Hola"));
     }
     
     private void usarSort(){

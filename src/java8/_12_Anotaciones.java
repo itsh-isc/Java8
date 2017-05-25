@@ -1,19 +1,12 @@
 package java8;
 
-import java.lang.annotation.Repeatable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
-public class _12_Anotaciones_Repeticion {
-    // la anotacion Repeatable permite anotaciones repetidas en una clase
-    // definiendo cual sera, en el argumento 'value'
-    @Repeatable(value = Lenguajes.class)
+// Crear anotaciones sirve para customizar nuestro codigo
+// y crear metadatos (los dato de los datos)
+public class _12_Anotaciones {
     public @interface Lenguaje{
         String value();
     }
-    
-    // la anotacion Retention define el tipo de retencion RUNTIME
-    @Retention(RetentionPolicy.RUNTIME)
+
     public @interface Lenguajes{
         Lenguaje[] value()default{};
     }
@@ -25,7 +18,10 @@ public class _12_Anotaciones_Repeticion {
     })
     public interface LenguajeProgramacion{}
     
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
+        // El API Reflection de Java permite tener operaciones de manipulacion con un objeto de una clase
+        // Esta API al basarse en las clases, requiere la propiedad '.class' de las mismas
+        
         Lenguaje[] lenguaje = LenguajeProgramacion.class.getAnnotationsByType(Lenguaje.class);
         
         int cantidadLenguajes = lenguaje.length;
@@ -33,5 +29,8 @@ public class _12_Anotaciones_Repeticion {
         for(int i = 0; i < cantidadLenguajes; i++){
             System.out.println(lenguaje[i].value());
         }
+        
+        // Por defecto el scope (alcance) de la retencion de las anotaciones es class
+        // y en tiempo de ejecucion (RUNTIME) no son alcanzadas
     }
 }

@@ -11,6 +11,6 @@ package java8.contract;
  */
 public interface PersonaB {
     default public void hablar(){
-        System.out.println("Saludos desde Persona B!");
+        System.out.println("Saludos desde INTERFAZ Persona B!");
     }
 }
